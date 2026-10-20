@@ -1,4 +1,4 @@
-const CACHE='napifal-shell-v1.1.0';
+const CACHE='napifal-shell-v1.2.0';
 const ROOT=new URL('./',self.location.href).href;
 const ASSETS=['./','./index.html','./style.css','./app.js','./model.js','./manifest.webmanifest','./handwriting.ttf','./icon.svg','./icon-192.png','./icon-512.png'];
 self.addEventListener('install',event=>event.waitUntil((async()=>{
