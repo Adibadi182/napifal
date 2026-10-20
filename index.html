@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#111823"><meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="description" content="A saját napi teendőid és fotófalad. A telefonodon, offline is.">
+  <title>NapiFal · A te napod</title>
+  <link rel="manifest" href="./manifest.webmanifest"><link rel="apple-touch-icon" href="./icon-192.png">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml"><link rel="stylesheet" href="./style.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+<header><div><p class="eyebrow">EGY KIS TÉR MAGADNAK</p><h1>Napi<span>Fal</span><i>·</i></h1></div><span class="badge">1.0 · SAJÁT TÉR</span></header>
+<main>
+  <div id="notice" role="status" hidden></div>
+  <section class="intro"><div><p class="eyebrow" id="date"></p><h2>Ma a céljaidért.</h2></div><strong id="percent">0<span>%</span></strong></section>
+  <div class="rail" role="progressbar" aria-label="Elvégzett teendők" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="progress"></div></div>
+  <p class="muted progress-caption" id="count">Adatok betöltése…</p>
+  <section aria-labelledby="tasks-heading"><div class="section-heading"><div><span class="section-number">01</span><h2 id="tasks-heading">Napi teendők</h2></div><button class="primary" id="add-task" disabled>+ Feladat</button></div><div id="tasks"></div></section>
+  <section aria-labelledby="wall-heading" class="wall-section"><div class="section-heading"><div><span class="section-number">02</span><h2 id="wall-heading">A te falad.</h2></div><button class="primary" id="add-photo" disabled>+ Fotó</button></div><p class="muted">Emlékek, tervek, apró motivációk.</p>
+    <div class="board-frame"><div id="board"><div class="empty-wall"><span>✦</span><h3>A történeted helye.</h3><p>Tűzd ki az első fotódat!</p></div></div></div>
+    <p class="hint">Koppints a képre a nagyításhoz. Húzd a gombostűnél fogva az átrendezéshez.</p><p class="muted small" id="photo-count"></p>
+    <input id="photos-input" type="file" accept="image/*" multiple hidden>
+  </section>
+  <section class="local-card"><div class="local-icon">⌂</div><div><h3>Ez a tér a tiéd.</h3><p>A feladataid és képeid ezen az eszközön maradnak. Nincsenek időzített értesítések.</p><p id="offline-status" class="offline-status" role="status">Az offline használat előkészítése…</p></div></section>
+  <details id="settings"><summary>Mentés és telepítés <span>＋</span></summary><div class="settings-body">
+    <h3>Mindig legyen egy másolatod</h3><p>A böngészőadatok törlése vagy a webapp eltávolítása adatvesztést okozhat. A mentés a fotókat is tartalmazza.</p>
+    <div class="button-row"><button id="backup" disabled>Mentés fájlba</button><button id="restore" disabled>Mentés betöltése</button></div><input id="restore-input" type="file" accept=".json,application/json" hidden><p id="last-backup" class="small muted"></p>
+    <h3>Saját ikon az iPhone-on</h3><ol><li>Nyisd meg ezt az oldalt <strong>Safariban</strong>.</li><li>Megosztás → <strong>Főképernyőhöz adás</strong>. Ha látszik, az „Megnyitás webalkalmazásként” legyen bekapcsolva.</li><li>Indítsd el az új ikonról internet mellett. Várd meg az „Offline használatra kész” jelzést.</li><li>Próbáld ki repülő üzemmódban is.</li></ol><p>Az első betöltéshez internet kell. Frissítéshez vagy a böngésző által törölt offline fájlok pótlásához újra szükség lehet rá.</p>
+    <h3>Átköltözés a régi NapiFalból</h3><p>Az Expo Go adatai nem jelennek meg automatikusan itt. A külön kapott exportáló frissítéssel készíts mentést a régi appban, majd töltsd be itt. Addig ne töröld az Expo Go-t.</p>
+  </div></details>
+  <footer>NapiFal 1.0 <span>KEVESEBB ZAJ. TÖBB SAJÁT PILLANAT.</span></footer>
+</main>
+<dialog id="task-dialog"><form id="task-form"><div class="dialog-heading"><h2>Új feladat</h2><button type="button" class="icon-button close-task" aria-label="Bezárás">×</button></div><label for="title">MIT KELL ELVÉGEZNI?</label><input id="title" required maxlength="120" placeholder="Például: 30 perc mozgás" autocomplete="off"><label for="time">IDŐPONT · OPCIONÁLIS</label><div class="time-row"><input id="time" type="time"><button type="button" id="clear-time">Törlés</button></div><p class="hint">Üresen is elmentheted. Az időpont csak a rendezést segíti, értesítést nem küld.</p><label for="repeat">ISMÉTLŐDÉS</label><select id="repeat"><option value="once">Csak ma</option><option value="daily" selected>Minden nap</option><option value="weekdays">Hétfő–péntek</option><option value="weekends">Hétvégén</option><option value="weekly">Hetente</option></select><button type="submit" class="primary save">Feladat mentése</button></form></dialog>
+<dialog id="photo-dialog"><div class="photo-top"><span>Fotó</span><button class="close-photo" aria-label="Fotó bezárása">Bezárás ×</button></div><img id="large-photo" alt=""><p id="large-caption"></p></dialog>
+<noscript>A NapiFal használatához engedélyezd a JavaScriptet a böngészőben.</noscript>
+</body></html>
